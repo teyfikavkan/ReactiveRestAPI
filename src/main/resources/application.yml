@@ -1,0 +1,46 @@
+application:
+  developer: teyfikavkan
+
+spring:
+  profiles:
+#    active: Reactive
+    active: Standard
+  security:
+    enabled: false
+#    user:
+#      name: actuator
+#      password: actuator
+#      rols: ACTUATOR_ADMIN
+  data:
+    mongodb:
+      username: user
+      password: pass
+      host: localhost
+      port: 27017
+      database: reactive_db
+
+management:
+  security:
+    enabled: false
+  # ENDPOINTS WEB CONFIGURATION
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: "*"
+  endpoint:
+    # HEALTH ENDPOINT
+    health:
+      show-details: always
+    # SHUTDOWN ENDPOINT (ShutdownEndpoint)
+    shutdown:
+      enabled: true
+  metrics:
+    export:
+      influx:
+        db: boot
+        userName: user
+        password: pass
+        uri: http://localhost:8086
+        step: 15s
+        autoCreateDb: false

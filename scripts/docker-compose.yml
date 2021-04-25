@@ -1,0 +1,68 @@
+version: '3.6'
+
+services:
+  mongodb:
+    image: mongo:4.2.3-bionic
+    container_name: docker_mongo_container
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: pass
+      MONGO_INITDB_DATABASE: reactive_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./conf/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    networks:
+      - reactive_network
+
+  grafana:
+    image: grafana/grafana:7.0.5
+    container_name: docker_grafana_container
+#    depends_on:
+#      - prometheus
+    ports:
+      - 3000:3000
+    volumes:
+      - ./conf/grafana/yaml/influxdb.yaml:/etc/grafana/provisioning/datasources/influxdb.yaml
+      - ./conf/grafana/yaml/prometheusdb.yaml:/etc/grafana/provisioning/datasources/prometheusdb.yaml
+      - ./conf/grafana/yaml/dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml
+      - ./conf/grafana/json/SpringBootDashboard.json:/var/lib/grafana/dashboards/SpringBoot.json
+      - ./conf/grafana/json/HttpResponseMonitoring.json:/var/lib/grafana/dashboards/HttpResponseMonitoring.json
+      - ./conf/grafana/json/JvmMicrometer.json:/var/lib/grafana/dashboards/JvmMicrometer.json
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    networks:
+      - reactive_network
+
+  prometheus:
+    image: prom/prometheus:v2.4.3
+    container_name: docker_prometheus_container
+    volumes:
+      - ./conf/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090/tcp
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    networks:
+      - reactive_network
+
+  influxdb:
+    image: influxdb:1.8.0
+    container_name: docker_influxdb_container
+    ports:
+      - 8086:8086
+    volumes:
+      - /var/lib/influxdb
+    environment:
+      INFLUXDB_HTTP_AUTH_ENABLED: "true"
+      INFLUXDB_DB: boot
+      INFLUXDB_USER: user
+      INFLUXDB_USER_PASSWORD: pass
+      INFLUXDB_ADMIN_USER: admin
+      INFLUXDB_ADMIN_PASSWORD: secret
+    networks:
+      - reactive_network
+
+networks:
+  reactive_network:
+    name: reactive_network

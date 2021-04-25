@@ -1,0 +1,15 @@
+# config file version
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: direct
+    orgId: 1
+    url: http://localhost:9090
+    isDefault: false
+    version: 1
+    editable: true
+    jsonData:
+      httpMode: GET
+      timeInterval: "30s"
