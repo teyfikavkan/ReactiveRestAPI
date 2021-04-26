@@ -75,7 +75,7 @@ services:
     networks:
       - reactive_network
 
-  locust-master:
+  master:
     image: locustio/locust
     ports:
       - "8089:8089"
@@ -85,7 +85,7 @@ services:
     networks:
       - reactive_network
 
-  locust-worker:
+  worker:
     image: locustio/locust
     volumes:
       - ./conf/locust/:/mnt/locust
