@@ -1,0 +1,1 @@
+call cd .. && docker build -t reactive-rest-api-0.0.1-snapshot .

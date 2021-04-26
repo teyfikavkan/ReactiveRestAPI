@@ -3,8 +3,8 @@ application:
 
 spring:
   profiles:
-#    active: Reactive
-    active: Standard
+    active: Reactive
+#    active: Standard
   security:
     enabled: false
 #    user:

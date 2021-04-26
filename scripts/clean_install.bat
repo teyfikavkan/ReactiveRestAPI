@@ -1,0 +1,1 @@
+call cd .. && mvn clean install
