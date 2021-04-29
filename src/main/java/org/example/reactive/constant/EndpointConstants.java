@@ -10,4 +10,8 @@ public class EndpointConstants {
     public static final String STANDARD_PATH = "/standard";
     public static final String GET_ALL_STANDARD_PATH = STANDARD_PATH + "/getAll";
     public static final String FIND_BY_ID_STANDARD_PATH = STANDARD_PATH + "/{id}";
+
+    public static final String ASYNC_PATH = "/async";
+    public static final String GET_ALL_ASYNC_PATH = ASYNC_PATH + "/getAll";
+    public static final String FIND_BY_ID_ASYNC_PATH = ASYNC_PATH + "/{id}";
 }

@@ -17,7 +17,7 @@ import static org.example.reactive.constant.ProjectConstants.BASE_PACKAGES;
 
 @Configuration
 @EnableMongoRepositories(basePackages = BASE_PACKAGES)
-@Profile("Standard")
+@Profile({"Standard","Async"})
 public class MongoStandardConfig extends AbstractMongoClientConfiguration {
 
     @Value("${spring.data.mongodb.username}")

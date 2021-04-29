@@ -22,7 +22,7 @@ import java.util.stream.IntStream;
 import static org.example.reactive.constant.ProjectConstants.RECORD_NUMBER;
 
 @Service
-@Profile("Standard")
+@Profile({"Standard","Async"})
 public class ProductStandardProducerService implements SmartLifecycle {
     private static final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
 
