@@ -3,9 +3,9 @@ application:
 
 spring:
   profiles:
+#    active: Standard
     active: Async
 #    active: Reactive
-#    active: Standard
   security:
     enabled: false
 #    user:
