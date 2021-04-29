@@ -5,6 +5,11 @@ from locust import HttpUser, TaskSet, task, between
 #   def index(self):
 #       self.client.get("/api/product/standard/getAll")
 
+# class Tasks(TaskSet):
+#   @task(1)
+#   def index(self):
+#       self.client.get("/api/product/async/getAll")
+
 class Tasks(TaskSet):
   @task(1)
   def index(self):

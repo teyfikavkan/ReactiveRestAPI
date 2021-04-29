@@ -151,6 +151,55 @@
               "value": "/api/product/reactive/getAll"
             }
           ]
+        },
+        {
+          "alias": "$tag_status",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "status"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "http_server_requests",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "uri",
+              "operator": "=",
+              "value": "/api/product/async/getAll"
+            }
+          ]
         }
       ],
       "thresholds": [],

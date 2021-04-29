@@ -89,7 +89,7 @@ services:
     image: locustio/locust
     volumes:
       - ./conf/locust/:/mnt/locust
-    command: -f /mnt/locust/locustfile.py --worker --master-host master --master-bind-host=192.168.1.49
+    command: -f /mnt/locust/locustfile.py --worker --master-host master --master-bind-host=X.X.X.X # write your local ip to bind
     networks:
       - reactive_network
 

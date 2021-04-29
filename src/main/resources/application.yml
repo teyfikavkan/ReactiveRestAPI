@@ -4,8 +4,8 @@ application:
 spring:
   profiles:
 #    active: Standard
-    active: Async
-#    active: Reactive
+#    active: Async
+    active: Reactive
   security:
     enabled: false
 #    user:
@@ -19,7 +19,9 @@ spring:
       host: localhost
       port: 27017
       database: reactive_db
-
+  mvc:
+    async:
+      request-timeout: -1
 management:
   security:
     enabled: false
